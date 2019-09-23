@@ -15,6 +15,9 @@ headers = ['website']
 flag = True
 
 
+
+
+
 def urlTest(name):
     try:
         response = requests.post(BASE_URL + name)
@@ -28,10 +31,10 @@ def urlTest(name):
 
 
 def producer():  # 生产者
-    num1 = 8
-    num2 = 33
-    num3 = 44
-    num4 = 25
+    num1 = 16
+    num2 = 13
+    num3 = 13
+    num4 = 10
     while num1 < 47 and num2 < 52 and num3 < 52 and num4 < 52:
         q.put(digits[num1] + digits[num2] + digits[num3] + digits[num4])
         num4 = num4 + 1

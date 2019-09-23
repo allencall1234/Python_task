@@ -1,7 +1,7 @@
 #coding:utf-8
-import  requests
+import requests
 import threading
-from bs4 import BeautifulSoup
+import bs4
 import re
 import os
 import time
@@ -42,7 +42,7 @@ def get_txt(txt_id):
         req_url=req_url_base+ txt['id']+'/'                        #根据小说编号获取小说URL
         print("小说编号："+txt['id'])
         res=requests.get(req_url,params=req_header)             #获取小说目录界面
-        soups=BeautifulSoup(res.text,"html.parser")           #soup转化
+        soups= bs4.BeautifulSoup(res.text, "html.parser")           #soup转化
         #获取小说题目
         txt['title']=soups.select('#wrapper .box_con #maininfo #info h1')[0].text
         txt['author']=soups.select('#wrapper .box_con #maininfo #info p')
@@ -81,7 +81,7 @@ def get_txt(txt_id):
                 #请求当前章节页面
                 r=requests.get(req_url+str(txt_section),params=req_header)
                 #soup转换
-                soup=BeautifulSoup(r.text,"html.parser")
+                soup= bs4.BeautifulSoup(r.text, "html.parser")
                 #获取章节名称
                 section_name=soup.select('#wrapper .content_read .box_con .bookname h1')[0]
                 section_text=soup.select('#wrapper .content_read .box_con #content')[0]
